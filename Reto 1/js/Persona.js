@@ -1,14 +1,18 @@
 "use strict";
+const defNombre = '';
+const defEdad = 0;
+const defSexo = 'H';
+const defPeso = 0;
+const defAltura = 0;
 class Persona {
     // Constructor
     constructor(newDni) {
-        // Propiedades
-        this.nombre = '';
-        this.edad = 0;
-        this.sexo = 'H';
-        this.peso = 0;
-        this.altura = 0;
+        this.nombre = defNombre;
+        this.edad = defEdad;
         this.dni = newDni;
+        this.sexo = defSexo;
+        this.peso = defPeso;
+        this.altura = defAltura;
     }
     // Métodos
     getNombre() {

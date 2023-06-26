@@ -1,18 +1,29 @@
 type Sexo = 'H' | 'M';
 
+const defNombre: string = '';
+const defEdad: number = 0;
+const defSexo: Sexo = 'H';
+const defPeso: number = 0;
+const defAltura: number = 0;
+
 class Persona {
 
     // Propiedades
-    private nombre: string = '';
-    private edad: number = 0;
+    private nombre: string;
+    private edad: number;
     private dni: string;
-    private sexo: Sexo = 'H';
-    private peso: number = 0;
-    private altura: number = 0;
+    private sexo: Sexo;
+    private peso: number;
+    private altura: number;
 
     // Constructor
     constructor(newDni: string) {
+        this.nombre = defNombre;
+        this.edad = defEdad;
         this.dni = newDni;
+        this.sexo = defSexo;
+        this.peso = defPeso;
+        this.altura = defAltura;
     }
 
     // Métodos

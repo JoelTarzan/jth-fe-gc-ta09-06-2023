@@ -5,21 +5,10 @@ const defConsumoEnergetico = 'F';
 const defPeso = 5;
 class Electrodomestico {
     // Constructor
-    constructor(newConsumoEnergetico, newColor) {
+    constructor(newColor, newConsumoEnergetico) {
         this.precioBase = defPrecioBase;
-        this.color = defColor;
-        if (this.comprobarColor(newColor)) {
-            this.color = newColor;
-        }
-        else {
-            this.color = defColor;
-        }
-        if (this.comprobarCosnumoEnergetico(newConsumoEnergetico)) {
-            this.consumoEnergetico = newConsumoEnergetico;
-        }
-        else {
-            this.consumoEnergetico = defConsumoEnergetico;
-        }
+        this.color = this.comprobarColor(newColor);
+        this.consumoEnergetico = this.comprobarConsumoEnergetico(newConsumoEnergetico);
         this.peso = defPeso;
     }
     // Métodos
@@ -33,17 +22,13 @@ class Electrodomestico {
         return this.color;
     }
     setColor(newColor) {
-        if (this.comprobarColor(newColor)) {
-            this.color = newColor;
-        }
+        this.color = this.comprobarColor(newColor);
     }
     getConsumoEnergetico() {
         return this.consumoEnergetico;
     }
     setConsumoEnergetico(newConsumoEnergetico) {
-        if (this.comprobarCosnumoEnergetico(newConsumoEnergetico)) {
-            this.consumoEnergetico = newConsumoEnergetico;
-        }
+        this.consumoEnergetico = this.comprobarConsumoEnergetico(newConsumoEnergetico);
     }
     getPeso() {
         return this.peso;
@@ -51,56 +36,83 @@ class Electrodomestico {
     setPeso(newPeso) {
         this.peso = newPeso;
     }
-    comprobarCosnumoEnergetico(letra) {
-        const valoresPermitidos = ['A', 'B', 'C', 'D', 'E', 'F'];
-        return valoresPermitidos.indexOf(letra) !== -1;
-    }
-    comprobarColor(color) {
-        const valoresPermitidos = ['blanco', 'negro', 'rojo', 'azul', 'gris'];
-        return valoresPermitidos.indexOf(color) !== -1;
-    }
-    precioFinal() {
-        switch (this.consumoEnergetico) {
+    comprobarConsumoEnergetico(letra) {
+        switch (letra) {
             case 'A':
-                this.precioBase += 100;
+                return 'A';
                 break;
             case 'B':
-                this.precioBase += 80;
+                return 'B';
                 break;
             case 'C':
-                this.precioBase += 60;
+                return 'C';
                 break;
             case 'D':
-                this.precioBase += 50;
+                return 'D';
                 break;
             case 'E':
-                this.precioBase += 30;
+                return 'E';
+                break;
+            default:
+                return defConsumoEnergetico;
+                break;
+        }
+    }
+    comprobarColor(color) {
+        switch (color) {
+            case 'negro':
+                return 'negro';
+                break;
+            case 'rojo':
+                return 'rojo';
+                break;
+            case 'azul':
+                return 'azul';
+                break;
+            case 'gris':
+                return 'gris';
+                break;
+            default:
+                return defColor;
+                break;
+        }
+    }
+    precioFinal() {
+        let precioFinal = this.precioBase;
+        switch (this.consumoEnergetico) {
+            case 'A':
+                precioFinal += 100;
+                break;
+            case 'B':
+                precioFinal += 80;
+                break;
+            case 'C':
+                precioFinal += 60;
+                break;
+            case 'D':
+                precioFinal += 50;
+                break;
+            case 'E':
+                precioFinal += 30;
                 break;
             case 'F':
-                this.precioBase += 10;
+                precioFinal += 10;
                 break;
         }
         switch (true) {
             case this.peso <= 19:
-                this.precioBase += 10;
+                precioFinal += 10;
                 break;
             case this.peso >= 20 && this.peso <= 49:
-                this.precioBase += 50;
+                precioFinal += 50;
                 break;
             case this.peso >= 50 && this.peso <= 79:
-                this.precioBase += 80;
+                precioFinal += 80;
                 break;
             case this.peso >= 80:
-                this.precioBase += 100;
+                precioFinal += 100;
                 break;
         }
-        return this.precioBase;
+        return precioFinal;
     }
 }
-// Instancias de ejemplo
-let electrodomestico1 = new Electrodomestico('C', 'rojo');
-let electrodomestico2 = new Electrodomestico('Hola', 'amarillo');
-console.log(electrodomestico1);
-console.log(electrodomestico2);
-electrodomestico1.setPeso(37);
-console.log(electrodomestico1.precioFinal());

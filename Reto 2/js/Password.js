@@ -5,8 +5,8 @@ class Password {
     // Constructor
     constructor() {
         this.longitud = defLongitud;
-        this.contrasena = this.generarContrasena();
         this.caracteres = defCaracteres;
+        this.contrasena = this.generarContrasena();
     }
     // Métodos
     generarContrasena() {
